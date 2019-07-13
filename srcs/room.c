@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 11:57:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/14 00:27:45 by gjuste           ###   ########.fr       */
+/*   Created: 2019/07/13 23:59:10 by gjuste            #+#    #+#             */
+/*   Updated: 2019/07/14 00:01:44 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "lem-in.h"
 
-# include "libft/libft.h"
-
-typedef struct	s_lem
+int		room_fmt(char *line)
 {
-	int		ants;
-	int		opt;
-	char	*start;
-	char	*end;
-	char	*pipe;
-}				t_lem;
+	int		i;
+	int		ret;
 
-void			ft_error(t_lem *stt, int err);
-void			parser(t_lem *stt);
-void			check_cmd(t_lem *stt, char *line);
-int				room_fmt(char *line);
-int				get_pipe(t_lem *stt, char *line);
-int				pipe_fmt(char *line);
-
-#endif
+	if (!line || line[0] == 'L')
+		return (0);
+	i = 0;
+	while (line[i] && line[i] != ' ')
+		i++;
+	ret = ++i;
+	while (line[i] && ft_isdigit(line[i]))
+		i++;
+	ret -= i;
+	if (!line[i] || line[i] != ' ' || ret == 0)
+		return(0);
+	ret = ++i;
+	while (line[i] && ft_isdigit(line[i]))
+		i++;
+	ret -= i;
+	return (ret ? 1 : 0);
+}

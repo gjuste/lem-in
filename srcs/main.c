@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/13 01:50:08 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/13 22:46:49 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	set_stt(t_lem *stt)
 	stt->opt = 1;
 	stt->start = NULL;
 	stt->end = NULL;
+	stt->pipe = NULL;
 }
 
 int		main(int ac, char **av)
@@ -46,7 +47,6 @@ int		main(int ac, char **av)
 	set_stt(stt);
 	if (ac > 1)
 		get_opt(stt, av);
-	if (!parser(stt))
-		ft_error(stt, 3);
+	parser(stt);
 	return (0);
 }

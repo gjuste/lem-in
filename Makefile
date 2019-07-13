@@ -6,7 +6,7 @@
 #    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/07/12 21:30:43 by gjuste           ###   ########.fr        #
+#    Updated: 2019/07/14 00:26:06 by gjuste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,9 @@ LIBFT_OBJS =	$(addprefix $(LIBFT_DIR)/, $(LIBFT_SRCS))
 
 SRC_FILE =	main.c		\
 			parser.c	\
+			cmd.c		\
+			room.c		\
+			pipe.c		\
 			ft_error.c
 SRC_FILES =		$(sort $(SRC_FILE))
 SRC_DIR =		srcs
