@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:54:50 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/14 00:01:11 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/14 20:47:28 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_cmd(t_lem *stt, char *l_tmp)
 	char	*name;
 
 	name = NULL;
-	if ((ret = room_fmt(l_tmp)))
+	if ((ret = room_fmt(stt, l_tmp)))
 	{
 		i = 0;
 		while (l_tmp[i] != ' ')

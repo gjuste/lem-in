@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/14 00:26:33 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:53:18 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		parser(t_lem *stt)
 	char	*line;
 	int		ret;
 	int		i;
+	int		j;
+	t_room	*tmp;
 
 	get_nb_ants(stt);
 	line = NULL;
@@ -45,14 +47,22 @@ void		parser(t_lem *stt)
 		i = 0;
 		if (line[0] == '#' && line[1] == '#')
 			check_cmd(stt, line);
-		if ((line[0] != '#' && !room_fmt(line)) && !(i = pipe_fmt(line)) && !ret)
-		{
-			ft_strdel(&line);
-			ft_error(stt, 3);
-		}
-		else if (i)
-			i = get_pipe(stt, line);			
+		if (line[0] != '#' && !(i = room_fmt(stt, line)))
+			i = get_pipe(stt, line);		
 		ft_strdel(&line);
+	}
+	tmp = stt->r;
+	while (tmp->next) //debug affichage chaque maillon
+	{
+		j = 0;
+		ft_printf("\033[36m%-3s\033[0m | %3d / %3d\n", tmp->name, tmp->x, tmp->y);
+		while (tmp->pipe[j])
+		{
+			ft_printf("lol\n");
+			ft_printf("\t\033[33m%s\033[0m\n", tmp->pipe[j]);
+			j++;
+		}
+		tmp = tmp->next;
 	}
 	if (ret <= 0 && !i)
 		ft_error(stt, ret < 0 ? 4 : 3);

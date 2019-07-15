@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/13 22:46:49 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/14 17:49:53 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	set_stt(t_lem *stt)
 	stt->opt = 1;
 	stt->start = NULL;
 	stt->end = NULL;
-	stt->pipe = NULL;
+	stt->r = NULL;
 }
 
 int		main(int ac, char **av)

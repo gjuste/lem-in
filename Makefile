@@ -6,7 +6,7 @@
 #    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/07/14 00:26:06 by gjuste           ###   ########.fr        #
+#    Updated: 2019/07/14 17:35:38 by gjuste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,10 +144,10 @@ $(NAME): $(LIBFT) $(OBJS_DIR) $(OBJS)
 	@if [ "$(J)" -eq "0" ]; then printf "%-10s $(WHITE)%-15s$(RESET) %23s\n" "Compiling" $(NAME) "***"; $(eval J = 1) fi
 	@$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJS) -I $(INCLUDES)
 	@printf "$(GREEN)[ 100%% ]   Compiling   $(BGREE)%-16s$(RESET) %10s\n\n$(RESET)" $(NAME) "done ---"
-	@echo "$(RED)-------------- [ $(CYAN)EVERYTHING IS OK$(RED) ] --------------$(RESET)"
+	@echo "$(BLUE)-------------- [ $(CYAN)EVERYTHING IS OK$(BLUE) ] --------------$(RESET)"
 
 $(LIBFT): $(HEADER_LIB) $(HEADER_PRINTF) $(LIBFT_OBJS)
-	@echo "$(RED)-------- [ $(CYAN)lem-in by jpelleti && gjuste$(RED) ] --------$(RESET)\n"
+	@echo "$(BLUE)-------- [ $(CYAN)lem-in by jpelleti && gjuste$(BLUE) ] --------$(RESET)\n"
 	@printf "%-10s $(WHITE)%-15s$(RESET) %23s\n" "Linking" "Libft" "***"
 	@(cd $(LIBFT_DIR) && $(MAKE))
 
