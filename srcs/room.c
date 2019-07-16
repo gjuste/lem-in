@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:59:10 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/14 20:47:53 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/16 13:36:12 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_room	*set_room(void)
 	new->name = NULL;
 	new->x = 0;
 	new->y = 0;
-	new->pipe = NULL;
+	new->links = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -45,7 +45,7 @@ static t_room	*creat_room(t_lem *stt)
 	return (new);
 }
 
-static int		get_name(t_lem *stt, t_room *tmp, char *line)
+static int		get_name(t_room *tmp, char *line)
 {
 	int		i;
 	
@@ -53,7 +53,7 @@ static int		get_name(t_lem *stt, t_room *tmp, char *line)
 	while (line[i] && line[i] != ' ')
 		i++;
 	if (!(tmp->name = ft_strndup(line, i)))
-		ft_error(stt, 1);
+		return (-1);
 	return (i + 1);
 }
 
@@ -63,23 +63,24 @@ int				room_fmt(t_lem *stt, char *line)
 	int		i;
 	int		ret;
 
-	if (!line || line[0] == 'L')
-		return (0);
+	if (!line || line[0] == 'L' || !ft_strstr(line, " "))
+		return (-1);
 	if (!(tmp = creat_room(stt)))
-		ft_error(stt, 1);
-	i = get_name(stt, tmp, line);
+		return (-1);
+	if ((i = get_name(tmp, line)) == -1)
+		return (-1);
 	ret = i;
 	while (line[i] && (ft_isdigit(line[i]) || (ret == i && line[ret] == '-')))
 		i++;
 	tmp->x = ft_atoi(&line[ret]);
 	ret -= i;
 	if (!line[i] || line[i] != ' ' || ret == 0)
-		return(0);
+		return (-1);
 	ret = ++i;
 	while (line[i] && (ft_isdigit(line[i]) || (ret == i && line[ret] == '-')))
 		i++;
 	tmp->y = ft_atoi(&line[ret]);
 	ret -= i;
 	// ft_printf("ok | %s | %d | %d\n\n", line, ret, ret && !line[i] ? 1 : 0);
-	return (ret && !line[i] ? 1 : 0);
+	return (ret && !line[i] ? 0 : -1);
 }

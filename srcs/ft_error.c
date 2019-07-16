@@ -6,11 +6,11 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:10:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/14 20:53:06 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/15 23:02:53 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem-in.h" // supprimer ce commentaire seulement si le fichier est utile, sinon, supprimer le fichier whala
 
 void	ft_error(t_lem *stt, int err)
 {

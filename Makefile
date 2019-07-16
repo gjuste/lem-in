@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
+#    By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/07/14 17:35:38 by gjuste           ###   ########.fr        #
+#    Updated: 2019/07/16 13:39:52 by jpelleti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ WHITE =		\033[1m
 NAME =	lem-in
 
 CC =		gcc
-CFLAGS =	-Wall -Werror -Wextra
+CFLAGS =	-Wall -Werror -Wextra -g
 
 HEADER =	lem-in.h
 INCLUDES =	.
@@ -125,7 +125,9 @@ SRC_FILE =	main.c		\
 			cmd.c		\
 			room.c		\
 			pipe.c		\
-			ft_error.c
+			free.c		\
+			ft_error.c	\
+			print.c
 SRC_FILES =		$(sort $(SRC_FILE))
 SRC_DIR =		srcs
 OBJS_DIR =		objs

@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 15:28:09 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/07/15 15:50:27 by jpelleti         ###   ########.fr       */
+/*   Created: 2019/07/15 14:13:50 by gjuste            #+#    #+#             */
+/*   Updated: 2019/07/16 13:42:55 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem-in.h"
 
-void	ft_strdel(char **as)
+static void	free_room(t_room *r)
 {
-	if (!as || !*as)
-		return ;
-	free(*as);
-	*as = NULL;
+	if (r)
+	{
+		ft_strdel(&(r->name));
+		if (r->links)
+			free(r->links);
+		r->links = NULL;
+		free_room(r->next);
+		free(r);
+		r = NULL;
+	}
+}
+
+void		free_all(t_lem *stt)
+{
+	stt->start = NULL;
+	stt->end = NULL;
+	free_room(stt->r);
+	free(stt);
+	stt = NULL;
 }

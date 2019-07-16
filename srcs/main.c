@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/14 17:49:53 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/16 14:26:05 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_opt(t_lem *stt, char **av)
 	{
 		if (*av[0] == '-')
 		{
-			if (ft_strstr(*av, "d") || ft_strstr(*av, "--debug"))
+			if (ft_strcmp(*av, "d") || ft_strcmp(*av, "--debug"))
 				stt->opt = 0;
 		}
 		av++;
@@ -47,6 +47,9 @@ int		main(int ac, char **av)
 	set_stt(stt);
 	if (ac > 1)
 		get_opt(stt, av);
-	parser(stt);
+	if (parser(stt) == -1)
+		ft_printf("ERROR\n");
+	ft_print_stt(stt);
+	free_all(stt);
 	return (0);
 }

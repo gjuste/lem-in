@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   resolve.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 15:28:09 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/07/15 15:50:27 by jpelleti         ###   ########.fr       */
+/*   Created: 2019/07/16 14:26:58 by jpelleti          #+#    #+#             */
+/*   Updated: 2019/07/16 14:36:18 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem-in.h"
 
-void	ft_strdel(char **as)
+int		resolve(t_lem *stt) // ne pas oublier resolve instant si end et start lies
 {
-	if (!as || !*as)
-		return ;
-	free(*as);
-	*as = NULL;
+	t_room *mv;
+
+
+	return (0);
 }

@@ -6,58 +6,53 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:54:50 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/14 20:47:28 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/15 23:03:18 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static char	*get_cmd(t_lem *stt, char *l_tmp)
+static t_room	*get_cmd(t_lem **stt, char *l_tmp)
 {
-	int		i;
 	int		ret;
-	char	*name;
+	t_room	*r;
 
-	name = NULL;
-	if ((ret = room_fmt(stt, l_tmp)))
+	r = NULL;
+	if (!(ret = room_fmt(*stt, l_tmp)))
 	{
-		i = 0;
-		while (l_tmp[i] != ' ')
-			i++;
-		name = ft_strndup(l_tmp, i);
+		r = (*stt)->r;
+		while (r->next)
+			r = r->next;
 	}
-	if (ret == 0 || !name)
-	{
-		ft_strdel(&l_tmp);
-		ft_error(stt, !i ? 1 : 3);
-	}
-	return (name);
+	if (ret == -1 || !r)
+		return (NULL);
+	return (r);
 }
 
-void		check_cmd(t_lem *stt, char *line)
+int		check_cmd(t_lem *stt, char *line)
 {
-	char	**cmd;
+	t_room	**cmd;
 	char	*l_tmp;
 	int		ret;
 	int		check;
 
-	if (ft_strstr(line, "##start"))
+	if (!ft_strcmp(line, "##start"))
 		cmd = &(stt->start);
-	else if (ft_strstr(line, "##end"))
+	else if (!ft_strcmp(line, "##end"))
 		cmd = &(stt->end);
 	else
-		return;
+		return (0);
 	check = 0;
 	while (!check && (ret = get_next_line(0, &l_tmp)) > 0)
 	{
 		if (l_tmp && l_tmp[0] != '#')
 		{
-			*cmd = get_cmd(stt, l_tmp);
+			if ((*cmd = get_cmd(&stt, l_tmp)) == NULL)
+				ret = -1;
 			check++;
 		}
+		ft_printf("%s\n", l_tmp);
 		ft_strdel(&l_tmp);
 	}
-	// ft_printf("\033[32m%s %s\033[0m\n", stt->start, stt->end);
-	if (ret <= 0)
-		ft_error(stt, ret < 0 ? 4 : 3);
+	return (ret <= 0 ? -1 : 0);
 }
