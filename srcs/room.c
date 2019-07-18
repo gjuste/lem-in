@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:59:10 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/16 13:36:12 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/07/18 13:56:26 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,17 @@ int				room_fmt(t_lem *stt, char *line)
 	if ((i = get_name(tmp, line)) == -1)
 		return (-1);
 	ret = i;
-	while (line[i] && (ft_isdigit(line[i]) || (ret == i && line[ret] == '-')))
+	while (line[i] && ft_isdigit(line[i]))
 		i++;
 	tmp->x = ft_atoi(&line[ret]);
 	ret -= i;
 	if (!line[i] || line[i] != ' ' || ret == 0)
 		return (-1);
 	ret = ++i;
-	while (line[i] && (ft_isdigit(line[i]) || (ret == i && line[ret] == '-')))
+	while (line[i] && ft_isdigit(line[i]))
 		i++;
 	tmp->y = ft_atoi(&line[ret]);
 	ret -= i;
 	// ft_printf("ok | %s | %d | %d\n\n", line, ret, ret && !line[i] ? 1 : 0);
-	return (ret && !line[i] ? 0 : -1);
+	return (ret && !line[i] && tmp->x >= 0 && tmp->y >= 0 ? 0 : -1);
 }

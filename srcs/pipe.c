@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 00:25:40 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/16 16:49:58 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/17 02:22:41 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int		pipe_fmt(t_lem *stt, char *line)
 	n1 = ft_strndup(line, i);
 	i++;
 	n2 = ft_strdup(&line[i]);
-	if (n1 == n2 || !n1 || !n2)
+	if (!ft_strcmp(n1, n2) || !n1 || !n2)
 		return (-1);
 	else
 		i = set_pipe(stt, n1, n2);
@@ -106,7 +106,6 @@ int				get_pipe(t_lem *stt, char *line)
 	int		i;
 
 	i = pipe_fmt(stt, line);
-	// ft_strdel(&line);
 	while (!i && (ret = get_next_line(0, &line)) > 0)
 	{
 		if (!line)

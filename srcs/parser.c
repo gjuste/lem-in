@@ -6,27 +6,47 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/16 16:46:34 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/16 21:58:39 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
+static int	set_nb_ants(t_lem *stt, char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i] && ft_isdigit(line[i]))
+		i++;
+	if (!line[i])
+		stt->ants = ft_atoi(line);
+	else
+		return (-2);
+	return (-1);
+}
+
 static int	get_nb_ants(t_lem *stt)
 {
 	char	*line;
 	int		ret;
+	int		i;
 
 	line = NULL;
-	ret = get_next_line(0, &line);
-	if (line)
+	i = 0;
+	while (!i && (ret = get_next_line(0, &line)))
 	{
-		stt->ants = ft_atoi(line);
+		i++;
+		if (!line)
+			return (-1);
+		ft_printf("%s\n", line);
+		if (line[0] == '#' && line[1] != '#')
+			i = 0;
+		else
+			i = set_nb_ants(stt, line);
 		ft_strdel(&line);
 	}
-	if (stt->ants <= 0)
-		ret = -2;
-	if (ret <= 0)
+	if (ret <= 0 || i == -2 || stt->ants <= 0)
 		return (-1);
 	return (0);
 }
