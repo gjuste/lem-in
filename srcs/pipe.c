@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 00:25:40 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/17 02:22:41 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/20 16:10:36 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		add_pipe(t_room *r, t_room *n)
 	while (r->links && r->links[i])
 		i++;
 	if (!(tmp = (t_room**)malloc(sizeof(t_room*) * (i + 2))))
-		return (-1);
+		return (-2);
 	tmp[i + 1] = NULL;
 	tmp[i--] = n;
 	while (i >= 0)
@@ -66,13 +66,13 @@ static int		set_pipe(t_lem *stt, char *n1, char *n2)
 				return (0);
 			i++;
 		}
-		if (add_pipe(r1, r2) == -1)
-			return (-1);
-		if (add_pipe(r2, r1) == -1)
-			return (-1);
+		if ((i = add_pipe(r1, r2)) < 0)
+			return (i);
+		if ((i = add_pipe(r2, r1)) < 0)
+			return (i);
 		return (0);
 	}
-	return (-1);
+	return (-2);
 }
 
 static int		pipe_fmt(t_lem *stt, char *line)
@@ -91,13 +91,13 @@ static int		pipe_fmt(t_lem *stt, char *line)
 	n1 = ft_strndup(line, i);
 	i++;
 	n2 = ft_strdup(&line[i]);
-	if (!ft_strcmp(n1, n2) || !n1 || !n2)
-		return (-1);
+	if (!n1 || !n2 || !ft_strcmp(n1, n2)) // voir free n1 et n2 en cas d'erreurs
+		return (-2);
 	else
 		i = set_pipe(stt, n1, n2);
 	ft_strdel(&n1);
 	ft_strdel(&n2);
-	return (i == -1 ? -1 : 0);
+	return (i < 0 ? i : 0);
 }
 
 int				get_pipe(t_lem *stt, char *line)
@@ -106,6 +106,8 @@ int				get_pipe(t_lem *stt, char *line)
 	int		i;
 
 	i = pipe_fmt(stt, line);
+	if (i == -1)
+		i = -2;
 	while (!i && (ret = get_next_line(0, &line)) > 0)
 	{
 		if (!line)
@@ -114,5 +116,11 @@ int				get_pipe(t_lem *stt, char *line)
 		ft_printf("%s\n", line);
 		ft_strdel(&line);
 	}
-	return (i == -1 ? -1 : 0);
+	if (stt->start)
+		if (!stt->start->links)
+			i = -2;
+	if (stt->end)
+		if (!stt->end->links)
+			i = -2;
+	return (ret < 0 || i < 0 ? i : 0);
 }

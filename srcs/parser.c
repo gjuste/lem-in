@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/16 21:58:39 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/07/20 15:46:39 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ int		parser(t_lem *stt)
 		ft_strdel(&line);
 	}
 	return (ret < 0 || !stt->r || !stt->start
-		|| !stt->end || i == -1 ? -1 : 0);
+		|| !stt->end || i == -2 ? -1 : 0);
 }

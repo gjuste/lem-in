@@ -26,6 +26,11 @@ readFunction()
 }
 
 ## ------ INITIALISATION ------ ##
+if [ "$1" = "-d" ]; then
+	rm -f $folder/*/*ret*
+	echo $YELLOW"ret files deleted ✅"
+	exit;
+fi
 if [ -x "lem-in" ]; then
 	start=1
 else
@@ -74,7 +79,7 @@ testFunction()
 			if [ "$err" ]; then
 				j=$(($j+1))
 			else
-				printf $RED"%-28s$RESET-- no error\n" $file
+				printf $RED"%-28s$RESET-- no error\n" "$file ❌"
 			fi
 			if [ "$leaks" ] && [ "$ld" ]; then
 				k=$(($k+1))
@@ -92,7 +97,7 @@ testFunction()
 	if [ "$nb_test" -eq 0 ]; then
 		printf "%-42s---\n\n" "NO TEST TO DO"
 	elif [ "$j" -eq "$nb_test" ]; then
-		printf $BGREEN"%-42s$RESET---\n\n" "Good for all files ($j/$nb_test test)"
+		printf $BGREEN"%-42s$RESET---\n\n" "Good for all files ($j/$nb_test test) ✅"
 	elif [ "$j" -gt "$(($nb_test/2))" ]; then
 		printf $BYELLOW"%-42s$RESET---\n\n" "Good for $j/$nb_test files"
 	elif [ "$j" -ge 0 ]; then
