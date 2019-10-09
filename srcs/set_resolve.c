@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:22:44 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/09 16:42:34 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/09 17:08:54 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	creat_p_size(t_lem *stt)
 	return (0);
 }
 
-void		sort_p_size(t_lem *stt)  // changer retour si probleme
+void		sort_p_size(t_lem *stt)  // changer retour
 {
 	t_room	*save;
 	int		i;
