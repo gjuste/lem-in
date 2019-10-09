@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:10:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/15 23:02:53 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/09/17 13:58:55 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h" // supprimer ce commentaire seulement si le fichier est utile, sinon, supprimer le fichier whala
+#include "lem-in.h" // supprimer ce commentaire seulement si le fichier utile
 
 void	ft_error(t_lem *stt, int err)
 {
@@ -23,7 +23,7 @@ void	ft_error(t_lem *stt, int err)
 	l_err[4] = "\033[31merror --\033[0m\tread error";
 	l_err[4] = "\033[31merror --\033[0m\tpipe fornat error";
 	if (stt->opt)
-		err = 0 ;
+		err = 0;
 	ft_printf("%s\n", l_err[err]);
 	exit(1);
 }

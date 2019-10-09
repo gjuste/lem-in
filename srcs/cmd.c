@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:54:50 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/15 23:03:18 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/09/17 12:58:08 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_room	*get_cmd(t_lem **stt, char *l_tmp)
 	return (r);
 }
 
-int		check_cmd(t_lem *stt, char *line)
+int				check_cmd(t_lem *stt, char *line)
 {
 	t_room	**cmd;
 	char	*l_tmp;

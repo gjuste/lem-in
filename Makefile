@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+         #
+#    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/07/16 13:39:52 by jpelleti         ###   ########.fr        #
+#    Updated: 2019/10/02 18:47:18 by gjuste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,14 +120,20 @@ HEADER_LIB =	$(addprefix $(LIBFT_DIR)/, libft.h)
 HEADER_PRINTF =	$(addprefix $(LIBFT_DIR)/, ft_printf.h)
 LIBFT_OBJS =	$(addprefix $(LIBFT_DIR)/, $(LIBFT_SRCS))
 
-SRC_FILE =	main.c		\
-			parser.c	\
-			cmd.c		\
-			room.c		\
-			pipe.c		\
-			free.c		\
-			ft_error.c	\
-			print.c
+SRC_FILE =	main.c				\
+			parser.c			\
+			cmd.c				\
+			room.c				\
+			pipe.c				\
+			free.c				\
+			ft_error.c			\
+			print.c				\
+			resolve.c			\
+			do_path.c			\
+			create_paths.c		\
+			set_resolve.c		\
+			bfs.c				\
+			remove_connection.c
 SRC_FILES =		$(sort $(SRC_FILE))
 SRC_DIR =		srcs
 OBJS_DIR =		objs

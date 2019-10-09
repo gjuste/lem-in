@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:51:23 by gjuste            #+#    #+#             */
-/*   Updated: 2019/07/12 19:29:22 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/09/17 14:02:57 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		readline(int fd, char **str)
 		if (ft_strchr(*str, '\n'))
 			break ;
 		if (ft_strchr(*str, '\0'))
-		return (0);
+			return (0);
 	}
 	return (error);
 }
