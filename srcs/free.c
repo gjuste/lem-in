@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 14:13:50 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/08 09:53:14 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/11 15:49:27 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		free_queue(t_queue *q)
 	{
 		free_queue(q->next);
 		q->r->bfs = 0;
+		q->r->marque = 0;
 		q->r->parent = NULL;
 		free(q);
 		q = NULL;

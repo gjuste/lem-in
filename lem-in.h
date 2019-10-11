@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:57:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/08 17:28:34 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/11 17:26:45 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct	s_lem
 	int		opt;
 	int		min;
 	int		avp;
-	int		avm;
+	int		sim;
 	int		p_nb;
 	int		l_nb;
 	int		l_need;

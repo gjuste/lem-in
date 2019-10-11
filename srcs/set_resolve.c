@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_resolve.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:22:44 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/09 17:08:54 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/11 17:28:24 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void		sort_p_size(t_lem *stt)  // changer retour
 
 void		set_resolve(t_lem *stt)
 {
+	stt->avp = 0;
 	if (check_start_end(stt))
 		return ;
 	while (bfs(stt) == 0) //semble avoir un truc pas free par free_queue
