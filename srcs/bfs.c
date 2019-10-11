@@ -67,8 +67,12 @@ t_room			*find_up(t_lem *stt, t_queue *q, t_queue **lst, t_room *r)
 	if (r == stt->start)
 		return (NULL);
 	lnk = tmp->links;
-	while (!find_reverse(stt, tmp, lnk->r))
+	while (!find_reverse(stt, tmp, lnk->r)) // lnk rajouter pour voir
+	{
 		lnk = lnk->next;
+		if (!lnk)
+			return (NULL);
+	}
 	tmp = lnk->r;
 	tmp->parent = r;
 	if (find_exit(stt, tmp))
@@ -112,6 +116,7 @@ int				find_paths(t_lem *stt, t_queue *q, t_queue **lst)
 		if ((r = find_up(stt, q, lst, tmp->r)))
 		{
 			tmp->r->parent = q->r;
+			r->parent = tmp->r;
 		}
 	}
 	return (0);
