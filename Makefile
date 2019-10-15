@@ -6,7 +6,7 @@
 #    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/10/14 16:35:05 by gjuste           ###   ########.fr        #
+#    Updated: 2019/10/15 15:36:11 by gjuste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ WHITE =		\033[1m
 NAME =	lem-in
 
 CC =		gcc
-CFLAGS =	-Wall -Werror -Wextra -g
+CFLAGS =	-Wall -Werror -Wextra -g3 -fsanitize=
 
-HEADER =	lem-in.h
+HEADER =	lem_in.h
 INCLUDES =	.
 
 LIBFT_SRCS =	get_next_line.c				\
@@ -126,15 +126,14 @@ SRC_FILE =	main.c				\
 			room.c				\
 			pipe.c				\
 			free.c				\
-			ft_error.c			\
 			print.c				\
 			resolve.c			\
 			do_path.c			\
 			create_paths.c		\
 			set_resolve.c		\
 			bfs.c				\
-			remove_connection.c	\
-			create_this_path.c
+			do_simulation.c		\
+			remove_connection.c
 SRC_FILES =		$(sort $(SRC_FILE))
 SRC_DIR =		srcs
 OBJS_DIR =		objs

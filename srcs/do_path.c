@@ -6,11 +6,11 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 10:22:58 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/10/08 15:52:59 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:37:38 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int	break_connexion(t_lem *stt, t_room *prec, t_room *curr)
 {
@@ -72,10 +72,6 @@ static void	run_path(t_lem *stt, t_room *r, int *i)
 		if (set_link(r->parent, r) == -1)
 			return ;
 	}
-	// if (r == stt->start || r == stt->end)
-	// 	ft_printf("%s%s%s | ", G, r->name, RS);
-	// else
-	//ft_printf("%s | ", r->name);
 	if (r != stt->end)
 		r->done = 1;
 }

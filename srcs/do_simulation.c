@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_connection.c                                :+:      :+:    :+:   */
+/*   do_simulation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 15:44:23 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:21 by gjuste           ###   ########.fr       */
+/*   Created: 2019/10/15 11:46:07 by gjuste            #+#    #+#             */
+/*   Updated: 2019/10/15 15:37:43 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	delete_connection(t_room *r1, t_room *r2)
+int		do_simulation(t_lem *stt, t_queue *q, t_links *lnk)
 {
-	t_links	*tmp;
-
-	tmp = r1->links;
-	while (tmp && tmp->r != r2)
-		tmp = tmp->next;
-	if (!tmp)
-		return ;
-	tmp->i = -1;
-}
-
-void		remove_connection(t_lem *stt, t_room *r1, t_room *r2)
-{
-	if (r1 == stt->start || r2 == stt->start)
-		return ;
-	delete_connection(r1, r2);
-	delete_connection(r2, r1);
+	if ((stt->p_nb == 0 && stt->avp == 0) ||
+		(stt->p_nb > 0 && stt->avp > 0 && (stt->avp
+		+ stt->ants + q->r->marque + 1) / (stt->p_nb + 1) <= stt->sim))
+	{
+		stt->sim = (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1);
+		lnk->r->parent = q->r;
+		stt->avp -= lnk->r->marque;
+		lnk->r->marque = q->r->marque + 1;
+		stt->avp += lnk->r->marque - 1;
+	}
+	return (0);
 }

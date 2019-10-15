@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:59:10 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/11 15:49:01 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:38:30 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static t_room	*creat_room(void)
 {
@@ -48,10 +48,9 @@ static int		get_room_in(t_lem *stt, t_room *new)
 	{
 		r = r->next;
 		if (!ret)
-		{
-			if (r->name == new->name || (r->x == new->x && r->y == new->y))
+			if (!ft_strcmp(r->name, new->name)
+				|| (r->x == new->x && r->y == new->y))
 				ret = -1;
-		}
 	}
 	r->next = new;
 	return (ret);
@@ -69,7 +68,7 @@ static int		get_name(t_room *tmp, char *line)
 	return (i + 1);
 }
 
-static int		get_infos(char* line, t_room *tmp)
+static int		get_infos(char *line, t_room *tmp)
 {
 	int		i;
 	int		ret;
@@ -101,6 +100,8 @@ int				room_fmt(t_lem *stt, char *line)
 		return (-1);
 	if (get_infos(line, tmp) == -1)
 	{
+		if (tmp->name)
+			ft_strdel(&(tmp->name));
 		free(tmp);
 		return (-1);
 	}

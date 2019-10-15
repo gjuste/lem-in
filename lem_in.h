@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:57:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/14 16:45:37 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:34:43 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define R "\033[31m"
-# define G "\033[32m"
-# define Y "\033[33m"
-# define B "\033[34m"
-# define P "\033[35m"
-# define C "\033[36m"
-# define BR "\033[31;1m"
-# define BG "\033[32;1m"
-# define BY "\033[33;1m"
-# define BB "\033[34;1m"
-# define BP "\033[35;1m"
-# define BC "\033[36;1m"
-# define BW "\033[1m"
-# define RS "\033[0m"
-
-
 # include "libft/libft.h"
+# include "colors.h"
 
 typedef struct	s_links
 {
@@ -53,29 +38,6 @@ typedef struct	s_room
 	struct s_room	*parent;
 }				t_room;
 
-// typedef struct	s_pr
-// {
-// 	int				ants;
-// 	t_room			*r;
-// 	struct s_pr	*next;
-// }				t_pr;
-
-typedef struct	s_path
-{
-	int				size;
-	t_room			*r;
-	// t_pr			*pr;
-	struct s_path	*nr;
-	struct s_path	*np;
-}				t_path;
-
-typedef struct	s_pdata
-{
-	int				sim;
-	t_path			*path;
-	struct s_pdata	*next;
-}				t_pdata;
-
 typedef struct	s_queue
 {
 	int				i;
@@ -97,10 +59,8 @@ typedef struct	s_lem
 	t_room	*start;
 	t_room	*end;
 	t_room	*r;
-	t_pdata	*path;
 }				t_lem;
 
-void			ft_error(t_lem *stt, int err);
 int				parser(t_lem *stt);
 int				check_cmd(t_lem *stt, char *line);
 int				room_fmt(t_lem *stt, char *line);
@@ -111,12 +71,10 @@ void			ft_print_stt(t_lem *stt);
 int				resolve(t_lem *stt);
 int				do_path(t_lem *stt);
 void			free_queue(t_queue *q);
-void			set_resolve(t_lem *stt);
+int				set_resolve(t_lem *stt);
 int				bfs(t_lem *stt);
+int				do_simulation(t_lem *stt, t_queue *q, t_links *lnk);
 int				create_paths(t_lem *stt);
 void			remove_connection(t_lem *stt, t_room *r1, t_room *r2);
-
-// pour tester
-int		create_this_path(t_lem *stt);
 
 #endif

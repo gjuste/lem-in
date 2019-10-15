@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 21:20:24 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/11 15:01:54 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:38:13 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 int		get_complet_path(t_lem *stt, t_room *room)
 {
@@ -119,12 +119,14 @@ void		print_help(void)
 
 void		print_line(t_lem *stt)
 {
+	if (!stt->l_nb)
+		return ;
 	ft_printf("\nnombre de lignes affichées : ");
 	if (!stt->l_need)
 		ft_printf("%s%d%s\n", BW, stt->l_nb, RS);
 	else if (stt->l_nb <= stt->l_need)
 		ft_printf("%s%d%s\n", BG, stt->l_nb, RS);
-	else if (stt->l_nb < stt->l_need + 3)
+	else if (stt->l_nb <= stt->l_need + 5)
 		ft_printf("%s%d%s\n", BY, stt->l_nb, RS);
 	else
 		ft_printf("%s%d%s\n", BR, stt->l_nb, RS);

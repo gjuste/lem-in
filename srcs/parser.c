@@ -6,11 +6,11 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/07 09:28:47 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:38:01 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int	check_of(int nb, char *line, int i)
 {
@@ -103,7 +103,7 @@ int			parser(t_lem *stt)
 			else
 				get_nb_lines(stt, line);
 		}
-		if (line[0] != '#' && (i = room_fmt(stt, line) == -1))
+		if (!i && line[0] != '#' && (i = room_fmt(stt, line) == -1))
 			i = get_pipe(stt, line);
 		ft_strdel(&line);
 	}

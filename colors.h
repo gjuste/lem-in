@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_connection.c                                :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 15:44:23 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:21 by gjuste           ###   ########.fr       */
+/*   Created: 2019/10/15 12:12:22 by gjuste            #+#    #+#             */
+/*   Updated: 2019/10/15 15:36:00 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#ifndef COLORS_H
+# define COLORS_H
 
-static void	delete_connection(t_room *r1, t_room *r2)
-{
-	t_links	*tmp;
+# define R "\033[31m"
+# define G "\033[32m"
+# define Y "\033[33m"
+# define B "\033[34m"
+# define P "\033[35m"
+# define C "\033[36m"
+# define BR "\033[31;1m"
+# define BG "\033[32;1m"
+# define BY "\033[33;1m"
+# define BB "\033[34;1m"
+# define BP "\033[35;1m"
+# define BC "\033[36;1m"
+# define BW "\033[1m"
+# define RS "\033[0m"
 
-	tmp = r1->links;
-	while (tmp && tmp->r != r2)
-		tmp = tmp->next;
-	if (!tmp)
-		return ;
-	tmp->i = -1;
-}
-
-void		remove_connection(t_lem *stt, t_room *r1, t_room *r2)
-{
-	if (r1 == stt->start || r2 == stt->start)
-		return ;
-	delete_connection(r1, r2);
-	delete_connection(r2, r1);
-}
+#endif

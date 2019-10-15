@@ -6,13 +6,14 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 13:57:23 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/10/14 21:01:05 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:38:58 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
-static t_queue	*add_queue(t_lem *stt, t_queue *first, t_queue *last, t_room *add)
+static t_queue	*add_queue(t_lem *stt, t_queue *first,
+							t_queue *last, t_room *add)
 {
 	t_queue *new;
 
@@ -45,7 +46,6 @@ t_room			*find_reverse(t_lem *stt, t_room *to_find, t_room *loop)
 	return (NULL);
 }
 
-
 t_room			*find_up(t_lem *stt, t_queue *q, t_queue **lst, t_room *r)
 {
 	t_room	*tmp;
@@ -61,7 +61,6 @@ t_room			*find_up(t_lem *stt, t_queue *q, t_queue **lst, t_room *r)
 			(*lst) = (*lst)->next;
 			(*lst)->r->parent = q->r;
 			(*lst)->r->marque = q->r->marque - 1;
-			// ft_printf("%s -> %d\n", (*lst)->r->name, (*lst)->r->marque);
 			return (tmp);
 		}
 		lnk = lnk->next;
@@ -73,29 +72,15 @@ int				find_paths(t_lem *stt, t_queue *q, t_queue **lst)
 {
 	t_links	*lnk;
 	t_links	*tmp;
-	int i;
+	int		i;
 
 	tmp = NULL;
 	lnk = q->r->links;
-	while(lnk)
+	while (lnk)
 	{
-		/*if (lnk->r == stt->end && lnk->i == 0)
-		{
-			if ((stt->p_nb == 0 && stt->avp == 0) || (stt->p_nb > 0 && stt->avp > 0
-			&& (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1) < stt->sim))
-			{
-				// if (!(stt->p_nb == 0 && stt->avp == 0))
-				// ft_printf("%d || %d || ", (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1), (stt->avp + stt->ants) / (stt->p_nb));
-				stt->sim = (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1);
-				lnk->r->parent = q->r;
-				stt->avp -= lnk->r->marque;
-				lnk->r->marque = q->r->marque + 1;
-				stt->avp += lnk->r->marque - 1;
-				// ft_printf("%d\n", stt->avp);
-			}
-			return (0);
-		}
-		else */if (q->r->parent && q->r->done == 1 && q->r->parent->done == 0
+		if (lnk->r == stt->end && lnk->i == 0)
+			return (do_simulation(stt, q, lnk));
+		else if (q->r->parent && q->r->done == 1 && q->r->parent->done == 0
 			&& lnk->r->bfs == 0 && lnk->i == 0)
 			find_up(stt, q, lst, q->r);
 		else if (lnk->r->bfs == 0 && lnk->i == 0)
@@ -124,17 +109,16 @@ int				bfs(t_lem *stt)
 	q = begin;
 	last = q;
 	ret = 0;
-	while(q && q->r != stt->end && !ret)
+	while (q && !ret)
 	{
 		if (find_paths(stt, q, &last))
 			ret = -1;
 		q = q->next;
 	}
-	// ft_printf("\n");
 	if (!ret && stt->end->marque == 0)
 		ret = -2;
 	if (!ret)
-		if (do_path(stt) == -1 || create_this_path(stt) == -1)
+		if (do_path(stt) == -1)
 			ret = -1;
 	stt->end->marque = 0;
 	free_queue(begin);

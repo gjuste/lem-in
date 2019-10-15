@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:54:50 by gjuste            #+#    #+#             */
-/*   Updated: 2019/09/17 12:58:08 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:37:25 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
-static t_room	*get_cmd(t_lem **stt, char *l_tmp)
+static t_room	*get_cmd_room(t_lem **stt, char *l_tmp)
 {
 	int		ret;
 	t_room	*r;
@@ -29,6 +29,19 @@ static t_room	*get_cmd(t_lem **stt, char *l_tmp)
 	return (r);
 }
 
+static t_room	**get_cmd(t_lem *stt, char *line)
+{
+	t_room	**cmd;
+
+	if (!ft_strcmp(line, "##start"))
+		cmd = &(stt->start);
+	else if (!ft_strcmp(line, "##end"))
+		cmd = &(stt->end);
+	else
+		return (NULL);
+	return (cmd);
+}
+
 int				check_cmd(t_lem *stt, char *line)
 {
 	t_room	**cmd;
@@ -36,21 +49,22 @@ int				check_cmd(t_lem *stt, char *line)
 	int		ret;
 	int		check;
 
-	if (!ft_strcmp(line, "##start"))
-		cmd = &(stt->start);
-	else if (!ft_strcmp(line, "##end"))
-		cmd = &(stt->end);
-	else
+	if (!(cmd = get_cmd(stt, line)))
 		return (0);
+	if (*cmd)
+		return (-1);
 	check = 0;
 	while (!check && (ret = get_next_line(0, &l_tmp)) > 0)
 	{
 		if (l_tmp && l_tmp[0] != '#')
 		{
-			if ((*cmd = get_cmd(&stt, l_tmp)) == NULL)
+			if ((*cmd = get_cmd_room(&stt, l_tmp)) == NULL)
 				ret = -1;
-			check++;
 		}
+		else if (l_tmp[0] == '#' && l_tmp[1] == '#')
+			ret = -1;
+		if (l_tmp[0] != '#' || (l_tmp[0] == '#' && l_tmp[1] == '#'))
+			check++;
 		ft_printf("%s\n", l_tmp);
 		ft_strdel(&l_tmp);
 	}

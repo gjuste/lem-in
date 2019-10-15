@@ -6,11 +6,11 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 00:25:40 by gjuste            #+#    #+#             */
-/*   Updated: 2019/09/24 20:07:12 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:38:08 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static t_room	*check_name(t_lem *stt, char *name)
 {
@@ -91,7 +91,7 @@ static int		pipe_fmt(t_lem *stt, char *line)
 	n1 = ft_strndup(line, i);
 	i++;
 	n2 = ft_strdup(&line[i]);
-	if (!n1 || !n2 || !ft_strcmp(n1, n2)) // voir free n1 et n2 en cas d'erreurs
+	if (!n1 || !n2 || !ft_strcmp(n1, n2))
 		return (-2);
 	else
 		i = set_pipe(stt, n1, n2);
@@ -112,9 +112,11 @@ int				get_pipe(t_lem *stt, char *line)
 	{
 		if (!line)
 			return (-1);
-		if (line[0] != '#') // faire si ## commande arreter
-			i = pipe_fmt(stt, line);
 		ft_printf("%s\n", line);
+		if (line[0] == '#' && line[1] == '#')
+			i = check_cmd(stt, line);
+		if (!i && line[0] != '#')
+			i = pipe_fmt(stt, line);
 		ft_strdel(&line);
 	}
 	if (stt->start)

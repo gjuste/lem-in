@@ -6,11 +6,11 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:22:44 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/14 21:00:31 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:38:34 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static void	start_end_travel(t_lem *stt, t_room *start, t_room *end)
 {
@@ -57,7 +57,7 @@ static int	creat_p_size(t_lem *stt)
 	return (0);
 }
 
-void		sort_p_size(t_lem *stt)  // changer retour
+void		sort_p_size(t_lem *stt)
 {
 	t_room	*save;
 	int		i;
@@ -81,26 +81,24 @@ void		sort_p_size(t_lem *stt)  // changer retour
 	}
 }
 
-void		set_resolve(t_lem *stt)
+int			set_resolve(t_lem *stt)
 {
 	int		ret;
 
 	ret = 0;
 	stt->avp = 0;
 	if (check_start_end(stt))
-		return ;
-	while ((ret = bfs(stt)) == 0) //semble avoir un truc pas free par free_queue
+		return (-1);
+	while ((ret = bfs(stt)) == 0)
 		stt->p_nb++;
 	if (ret == -1 || !stt->p_nb)
-	{
-		return ;
-		ft_printf("merde\n");
-	}
+		return (-1);
 	if (creat_p_size(stt) == -1)
-		return ;
+		return (-1);
 	if (create_paths(stt) == -1)
-		ft_printf("OOOOOOHHHHH\n");
+		return (-1);
 	sort_p_size(stt);
-	// if (resolve(stt) == -1)
-	// 	ft_printf("\n%sERROR2%s\n", BR, RS);
+	if (resolve(stt) == -1)
+		return (-1);
+	return (0);
 }

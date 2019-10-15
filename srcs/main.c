@@ -6,11 +6,11 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/14 21:06:28 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:37:55 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static void	get_opt(t_lem *stt, char **av)
 {
@@ -47,7 +47,6 @@ static void	set_stt(t_lem *stt)
 	stt->start = NULL;
 	stt->end = NULL;
 	stt->r = NULL;
-	stt->path = NULL;
 }
 
 int			main(int ac, char **av)
@@ -55,21 +54,22 @@ int			main(int ac, char **av)
 	t_lem	*stt;
 
 	if (!(stt = (t_lem*)malloc(sizeof(t_lem))))
-		ft_error(stt, 0);
+	{
+		ft_printf("ERROR\n");
+		return (0);
+	}
 	set_stt(stt);
 	if (ac > 1)
 		get_opt(stt, av);
 	if (stt->opt >= 1)
 	{
 		if (parser(stt) == -1)
-		{
 			ft_printf("ERROR\n");
-			return (0);
-		}
-		set_resolve(stt);
+		else if (set_resolve(stt) == -1)
+			ft_printf("ERROR\n");
 	}
 	ft_print_stt(stt);
 	free_all(stt);
-	// while (1);
+	// while(1);
 	return (0);
 }

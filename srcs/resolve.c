@@ -6,11 +6,11 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 14:26:58 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/10/08 17:28:55 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:38:25 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static void	start_travel_ants(t_lem *stt, t_room *room, t_room *prev)
 {
@@ -41,7 +41,7 @@ static int	travel(t_lem *stt, t_room *room, t_room *prev, int ind)
 			if (travel(stt, lnk->r, room, ind) == -1)
 				return (-1);
 			if (room != stt->start)
-				break;
+				break ;
 		}
 		lnk = lnk->next;
 	}
