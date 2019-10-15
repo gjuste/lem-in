@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 13:57:23 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/10/11 17:28:20 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/14 21:01:05 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,23 @@ int				find_paths(t_lem *stt, t_queue *q, t_queue **lst)
 	lnk = q->r->links;
 	while(lnk)
 	{
-		if (lnk->r == stt->end && lnk->i == 0)
+		/*if (lnk->r == stt->end && lnk->i == 0)
 		{
 			if ((stt->p_nb == 0 && stt->avp == 0) || (stt->p_nb > 0 && stt->avp > 0
 			&& (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1) < stt->sim))
 			{
-				if (!(stt->p_nb == 0 && stt->avp == 0))
-				ft_printf("%d || %d || ", (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1), (stt->avp + stt->ants) / (stt->p_nb));
+				// if (!(stt->p_nb == 0 && stt->avp == 0))
+				// ft_printf("%d || %d || ", (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1), (stt->avp + stt->ants) / (stt->p_nb));
 				stt->sim = (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1);
 				lnk->r->parent = q->r;
 				stt->avp -= lnk->r->marque;
 				lnk->r->marque = q->r->marque + 1;
 				stt->avp += lnk->r->marque - 1;
-				ft_printf("%d\n", stt->avp);
+				// ft_printf("%d\n", stt->avp);
 			}
 			return (0);
 		}
-		else if (q->r->parent && q->r->done == 1 && q->r->parent->done == 0
+		else */if (q->r->parent && q->r->done == 1 && q->r->parent->done == 0
 			&& lnk->r->bfs == 0 && lnk->i == 0)
 			find_up(stt, q, lst, q->r);
 		else if (lnk->r->bfs == 0 && lnk->i == 0)
@@ -117,25 +117,26 @@ int				bfs(t_lem *stt)
 	t_queue	*q;
 	t_queue	*begin;
 	t_queue	*last;
+	int		ret;
 
 	if (!(begin = add_queue(stt, NULL, NULL, stt->start)))
 		return (-1);
 	q = begin;
 	last = q;
-	while(q)
+	ret = 0;
+	while(q && q->r != stt->end && !ret)
 	{
-		// if (q->r->marque == 0)
-		// 	ft_printf("parent ->> %s marque %d done %d : %s ->> WARNING\n",q->r->parent->name, q->r->parent->marque, q->r->parent->done, q->r->name);
 		if (find_paths(stt, q, &last))
-			return (-1);
+			ret = -1;
 		q = q->next;
 	}
-	ft_printf("\n");
-	if (stt->end->marque == 0)
-		return (-1);
-	if (do_path(stt) == -1)
-		return (-1);
+	// ft_printf("\n");
+	if (!ret && stt->end->marque == 0)
+		ret = -2;
+	if (!ret)
+		if (do_path(stt) == -1 || create_this_path(stt) == -1)
+			ret = -1;
 	stt->end->marque = 0;
 	free_queue(begin);
-	return (0);
+	return (ret);
 }

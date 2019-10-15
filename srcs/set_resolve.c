@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_resolve.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:22:44 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/11 17:28:24 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/14 21:00:31 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,24 @@ void		sort_p_size(t_lem *stt)  // changer retour
 
 void		set_resolve(t_lem *stt)
 {
+	int		ret;
+
+	ret = 0;
 	stt->avp = 0;
 	if (check_start_end(stt))
 		return ;
-	while (bfs(stt) == 0) //semble avoir un truc pas free par free_queue
+	while ((ret = bfs(stt)) == 0) //semble avoir un truc pas free par free_queue
 		stt->p_nb++;
+	if (ret == -1 || !stt->p_nb)
+	{
+		return ;
+		ft_printf("merde\n");
+	}
 	if (creat_p_size(stt) == -1)
 		return ;
 	if (create_paths(stt) == -1)
 		ft_printf("OOOOOOHHHHH\n");
 	sort_p_size(stt);
-	if (resolve(stt) == -1)
-		ft_printf("\n%sERROR2%s\n", BR, RS);
+	// if (resolve(stt) == -1)
+	// 	ft_printf("\n%sERROR2%s\n", BR, RS);
 }

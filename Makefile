@@ -6,7 +6,7 @@
 #    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/10/02 18:47:18 by gjuste           ###   ########.fr        #
+#    Updated: 2019/10/14 16:35:05 by gjuste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,8 @@ SRC_FILE =	main.c				\
 			create_paths.c		\
 			set_resolve.c		\
 			bfs.c				\
-			remove_connection.c
+			remove_connection.c	\
+			create_this_path.c
 SRC_FILES =		$(sort $(SRC_FILE))
 SRC_DIR =		srcs
 OBJS_DIR =		objs

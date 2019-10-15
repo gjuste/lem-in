@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:57:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/11 17:26:45 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/14 16:45:37 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,29 @@ typedef struct	s_room
 	struct s_room	*parent;
 }				t_room;
 
+// typedef struct	s_pr
+// {
+// 	int				ants;
+// 	t_room			*r;
+// 	struct s_pr	*next;
+// }				t_pr;
+
+typedef struct	s_path
+{
+	int				size;
+	t_room			*r;
+	// t_pr			*pr;
+	struct s_path	*nr;
+	struct s_path	*np;
+}				t_path;
+
+typedef struct	s_pdata
+{
+	int				sim;
+	t_path			*path;
+	struct s_pdata	*next;
+}				t_pdata;
+
 typedef struct	s_queue
 {
 	int				i;
@@ -74,6 +97,7 @@ typedef struct	s_lem
 	t_room	*start;
 	t_room	*end;
 	t_room	*r;
+	t_pdata	*path;
 }				t_lem;
 
 void			ft_error(t_lem *stt, int err);
@@ -91,5 +115,8 @@ void			set_resolve(t_lem *stt);
 int				bfs(t_lem *stt);
 int				create_paths(t_lem *stt);
 void			remove_connection(t_lem *stt, t_room *r1, t_room *r2);
+
+// pour tester
+int		create_this_path(t_lem *stt);
 
 #endif

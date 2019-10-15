@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/09 12:14:46 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/14 21:06:28 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ static void	set_stt(t_lem *stt)
 	stt->p_nb = 0;
 	stt->l_nb = 0;
 	stt->l_need = 0;
+	stt->sim = 0;
 	stt->p_size = NULL;
 	stt->start = NULL;
 	stt->end = NULL;
 	stt->r = NULL;
+	stt->path = NULL;
 }
 
 int			main(int ac, char **av)
