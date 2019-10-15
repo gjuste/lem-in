@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 21:20:24 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:13 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 16:15:29 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,6 @@ void		ft_print_stt(t_lem *stt)
 	print_line(stt);
 	ft_printf("\n%sINFOS PRINT :%s\n", BC, RS);
 	print_stt(stt);
-//	print_r(stt);
+	// print_r(stt);
 	// print_path(stt);
 }

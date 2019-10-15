@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:01 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 16:16:42 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	get_nb_lines(t_lem *stt, char *line)
 	int		i;
 
 	i = 0;
-	if (ft_strcmp(line, "#Here is the number of lines required:"))
+	if (ft_strstr(line, "#Here is the number of lines required:"))
 	{
 		i = 0;
 		while (!ft_isdigit(line[i]))

@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:22:44 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:34 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/15 16:34:34 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	start_end_travel(t_lem *stt, t_room *start, t_room *end)
 		end->ants++;
 		ft_printf("L%d-%s ", end->ants, end->name);
 	}
+	stt->l_nb++;
 	ft_printf("\n");
 }
 
@@ -88,7 +89,7 @@ int			set_resolve(t_lem *stt)
 	ret = 0;
 	stt->avp = 0;
 	if (check_start_end(stt))
-		return (-1);
+		return (0);
 	while ((ret = bfs(stt)) == 0)
 		stt->p_nb++;
 	if (ret == -1 || !stt->p_nb)
