@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:57:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 15:45:51 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/16 23:50:31 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include "colors.h"
 
 typedef struct	s_links
@@ -86,7 +86,7 @@ int				bfs(t_lem *stt);
 int				do_simulation(t_lem *stt, t_queue *q, t_links *lnk);
 int				create_paths(t_lem *stt);
 void			remove_connection(t_lem *stt, t_room *r1, t_room *r2);
-t_str			*join(t_str *str, t_str **lstr, char *line);
+char			*join(t_lem *stt, t_str **lstr, char *line);
 void			print_parse(t_str *str);
 
 #endif

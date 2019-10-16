@@ -3,46 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 15:41:41 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/17 00:01:58 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_str		*join(t_str *str, t_str **lstr, char *line)
+char		*join(t_lem *stt, t_str **lstr, char *line)
 {
 	t_str	*new;
+	int		i;
 
-	if (!(new = malloc(sizeof(t_str))))
+	i = 0;
+	if (!(new = (t_str*)malloc(sizeof(t_str))))
 		return (NULL);
-	new->line = line;
-	if (!str || !lstr)
+	if (!(new->line = ft_strdup(line)))
+		i = -1;
+	ft_strdel(&line);
+	new->next = NULL;
+	if (!stt->str || !lstr)
 	{
+		stt->str = new;
 		(*lstr) = new;
-		return (new);
+		return (!i ? new->line : NULL);
 	}
 	(*lstr)->next = new;
-	new->next = NULL;
 	(*lstr) = (*lstr)->next;
-	return (str);
+	return (!i ? new->line : NULL);
 }
 
 void		deleter(t_str *str)
 {
-	if (str)
+	t_str	*tmp;
+
+	tmp = str;
+	while (tmp->next)
+		tmp = tmp->next;
+	if (tmp)
 	{
-		ft_strdel(&str->line);
-		free(str);
-		str = NULL;
+		ft_strdel(&tmp->line);
+		free(tmp);
+		tmp = NULL;
 	}
 }
 
 static void	get_opt(t_lem *stt, char **av)
 {
 	int		i;
+	int		j;
 
 	i = 0;
 	av++;
@@ -51,14 +62,21 @@ static void	get_opt(t_lem *stt, char **av)
 		stt->opt = 0;
 		return ;
 	}
-	while (*av)
+	while (av[i])
 	{
-		if (*av[0] == '-')
+		if (av[i][0] == '-')
 		{
-			if (ft_strcmp(*av, "-p") || ft_strcmp(*av, "--debug"))
+			if (!ft_strcmp(*av, "-p") || !ft_strcmp(*av, "--debug"))
 				stt->opt = 2;
+			if (ft_strcmp(*av, "-da") > 0 || ft_strcmp(*av, "--debug-ants") > 0)
+			{
+				j = 0;
+				while (av[i][j] != '\0' && !ft_isdigit(av[i][j]))
+					j++;
+				stt->p_ants = ft_atoi(&av[i][j]);
+			}
 		}
-		av++;
+		i++;
 	}
 }
 
@@ -94,10 +112,9 @@ int			main(int ac, char **av)
 			deleter(stt.str);
 		if (set_resolve(&stt) == -1)
 			ft_printf("ERROR\n");
-		// ft_printf("LINE :\n%s", stt.str);
 	}
 	ft_print_stt(&stt);
 	free_all(&stt);
-	while(1);
+	while(1); // A ENLEVER POUR PAS SE FAIRE ENCULER
 	return (0);
 }

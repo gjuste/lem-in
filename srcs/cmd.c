@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 23:54:50 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 15:48:33 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/16 23:50:57 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int				check_cmd(t_lem *stt, char *line)
 	check = 0;
 	while (!check && (ret = get_next_line(0, &l_tmp)) > 0)
 	{
+		if (!(l_tmp = join(stt, &(stt->lstr), l_tmp)))
+			return (-1);
 		if (l_tmp && l_tmp[0] != '#')
 		{
 			if ((*cmd = get_cmd_room(stt, l_tmp)) == NULL)
@@ -65,7 +67,6 @@ int				check_cmd(t_lem *stt, char *line)
 			ret = -1;
 		if (l_tmp[0] != '#' || (l_tmp[0] == '#' && l_tmp[1] == '#'))
 			check++;
-		stt->str = join(stt->str, &(stt->lstr), l_tmp);
 	}
 	return (ret <= 0 ? -1 : 0);
 }

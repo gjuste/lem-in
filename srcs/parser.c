@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 15:42:38 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/16 23:50:45 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,13 @@ static int	get_nb_ants(t_lem *stt)
 	while (!i && (ret = get_next_line(0, &line)))
 	{
 		i++;
-		stt->str = join(stt->str, &stt->lstr, line);
-		if (!line)
-			return (-1);
 		if (line[0] == '#' && ft_strcmp(line, "##start")
 			&& ft_strcmp(line, "##end"))
 			i = 0;
 		else
 			i = set_nb_ants(stt, line);
+		if (!(join(stt, &stt->lstr, line)))
+			i = -1;
 	}
 	if (ret <= 0 || i == -1 || stt->ants <= 0)
 		return (-1);
@@ -93,9 +92,6 @@ int			parser(t_lem *stt)
 	line = NULL;
 	while (!i && (ret = get_next_line(0, &line)) > 0)
 	{
-		if (!line)
-			return (-1);
-		stt->str = join(stt->str, &stt->lstr, line);
 		if (line[0] == '#')
 		{
 			if (line[1] == '#')
@@ -105,6 +101,8 @@ int			parser(t_lem *stt)
 		}
 		if (!i && line[0] != '#' && (i = room_fmt(stt, line) == -1))
 			i = get_pipe(stt, line);
+		if (!(join(stt, &stt->lstr, line)))
+			return (-1);
 	}
 	return (ret < 0 || !stt->r || i < 0 ? -1 : 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 21:20:24 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 15:45:10 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/16 22:12:25 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	print_parse(t_str *str)
 		ft_printf("%s\n", str->line);
 		str = str->next;
 	}
+	ft_printf("\n");
+
 }
 
 int		get_complet_path(t_lem *stt, t_room *room)

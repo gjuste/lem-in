@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+         #
+#    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/10/16 14:12:39 by jpelleti         ###   ########.fr        #
+#    Updated: 2019/10/16 22:47:58 by gjuste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,10 @@ NAME =	lem-in
 CC =		gcc
 CFLAGS =	-Wall -Werror -Wextra -g3
 
-HEADER =	lem_in.h
-INCLUDES =	.
+HEADERS =	lem_in.h	\
+			colors.h
+INCLUDES =	includes
+HEADER =	$(addprefix $(INCLUDES)/, $(HEADERS))
 
 LIBFT_SRCS =	get_next_line.c				\
 				ft_memset.c					\
