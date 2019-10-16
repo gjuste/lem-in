@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:37:55 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 15:41:41 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_str		*join(t_str *str, t_str **lstr, char *line)
+{
+	t_str	*new;
+
+	if (!(new = malloc(sizeof(t_str))))
+		return (NULL);
+	new->line = line;
+	if (!str || !lstr)
+	{
+		(*lstr) = new;
+		return (new);
+	}
+	(*lstr)->next = new;
+	new->next = NULL;
+	(*lstr) = (*lstr)->next;
+	return (str);
+}
+
+void		deleter(t_str *str)
+{
+	if (str)
+	{
+		ft_strdel(&str->line);
+		free(str);
+		str = NULL;
+	}
+}
 
 static void	get_opt(t_lem *stt, char **av)
 {
@@ -37,12 +65,16 @@ static void	get_opt(t_lem *stt, char **av)
 static void	set_stt(t_lem *stt)
 {
 	stt->ants = 0;
+	stt->p_ants = 0;
 	stt->opt = 1;
 	stt->min = 0;
 	stt->p_nb = 0;
 	stt->l_nb = 0;
 	stt->l_need = 0;
 	stt->sim = 0;
+	stt->avp = 0;
+	stt->str = NULL;
+	stt->lstr = NULL;
 	stt->p_size = NULL;
 	stt->start = NULL;
 	stt->end = NULL;
@@ -51,25 +83,21 @@ static void	set_stt(t_lem *stt)
 
 int			main(int ac, char **av)
 {
-	t_lem	*stt;
+	t_lem	stt;
 
-	if (!(stt = (t_lem*)malloc(sizeof(t_lem))))
-	{
-		ft_printf("ERROR\n");
-		return (0);
-	}
-	set_stt(stt);
+	set_stt(&stt);
 	if (ac > 1)
-		get_opt(stt, av);
-	if (stt->opt >= 1)
+		get_opt(&stt, av);
+	if (stt.opt >= 1)
 	{
-		if (parser(stt) == -1)
+		if (parser(&stt) == -1)
+			deleter(stt.str);
+		if (set_resolve(&stt) == -1)
 			ft_printf("ERROR\n");
-		else if (set_resolve(stt) == -1)
-			ft_printf("ERROR\n");
+		// ft_printf("LINE :\n%s", stt.str);
 	}
-	ft_print_stt(stt);
-	free_all(stt);
-	// while(1);
+	ft_print_stt(&stt);
+	free_all(&stt);
+	while(1);
 	return (0);
 }

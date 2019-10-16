@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 16:16:42 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 15:42:38 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static int	set_nb_ants(t_lem *stt, char *line)
 	while (line[i] && ft_isdigit(line[i]))
 		i++;
 	if (line[i] || !i)
-		return (-2);
+		return (-1);
 	stt->ants = ft_atoi(line);
-	return (i && stt->ants && !check_of(stt->ants, line, i) ? -1 : -2);
+	return (i && stt->ants && !check_of(stt->ants, line, i) ? 1 : -1);
 }
 
 static void	get_nb_lines(t_lem *stt, char *line)
@@ -69,16 +69,16 @@ static int	get_nb_ants(t_lem *stt)
 	while (!i && (ret = get_next_line(0, &line)))
 	{
 		i++;
+		stt->str = join(stt->str, &stt->lstr, line);
 		if (!line)
 			return (-1);
-		ft_printf("%s\n", line);
-		if (line[0] == '#' && line[1] != '#')
+		if (line[0] == '#' && ft_strcmp(line, "##start")
+			&& ft_strcmp(line, "##end"))
 			i = 0;
 		else
 			i = set_nb_ants(stt, line);
-		ft_strdel(&line);
 	}
-	if (ret <= 0 || i == -2 || stt->ants <= 0)
+	if (ret <= 0 || i == -1 || stt->ants <= 0)
 		return (-1);
 	return (0);
 }
@@ -95,7 +95,7 @@ int			parser(t_lem *stt)
 	{
 		if (!line)
 			return (-1);
-		ft_printf("%s\n", line);
+		stt->str = join(stt->str, &stt->lstr, line);
 		if (line[0] == '#')
 		{
 			if (line[1] == '#')
@@ -105,8 +105,6 @@ int			parser(t_lem *stt)
 		}
 		if (!i && line[0] != '#' && (i = room_fmt(stt, line) == -1))
 			i = get_pipe(stt, line);
-		ft_strdel(&line);
 	}
-	return (ret < 0 || !stt->r || !stt->start
-		|| !stt->end || i == -2 ? -1 : 0);
+	return (ret < 0 || !stt->r || i < 0 ? -1 : 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_resolve.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:22:44 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 16:34:34 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 15:45:45 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static void	start_end_travel(t_lem *stt, t_room *start, t_room *end)
 {
+	ft_printf("%s\n", stt->str);
 	start->ants = stt->ants;
-	ft_printf("\n");
+	// ft_printf("\n");
 	while (start->ants > 0)
 	{
 		start->ants--;
@@ -87,7 +88,8 @@ int			set_resolve(t_lem *stt)
 	int		ret;
 
 	ret = 0;
-	stt->avp = 0;
+	if (!stt->start || !stt->end)
+		return  (-1);
 	if (check_start_end(stt))
 		return (0);
 	while ((ret = bfs(stt)) == 0)
@@ -99,6 +101,7 @@ int			set_resolve(t_lem *stt)
 	if (create_paths(stt) == -1)
 		return (-1);
 	sort_p_size(stt);
+	print_parse(stt->str);
 	if (resolve(stt) == -1)
 		return (-1);
 	return (0);

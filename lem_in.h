@@ -6,7 +6,7 @@
 /*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:57:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:34:43 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:45:51 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,17 @@ typedef struct	s_queue
 	struct s_queue	*next;
 }				t_queue;
 
+typedef struct	s_str
+{
+	char			*line;
+	struct s_str	*next;
+}				t_str;
+
+
 typedef struct	s_lem
 {
 	int		ants;
+	int		p_ants;
 	int		opt;
 	int		min;
 	int		avp;
@@ -55,6 +63,8 @@ typedef struct	s_lem
 	int		p_nb;
 	int		l_nb;
 	int		l_need;
+	t_str	*str;
+	t_str	*lstr;
 	t_room	**p_size;
 	t_room	*start;
 	t_room	*end;
@@ -76,5 +86,7 @@ int				bfs(t_lem *stt);
 int				do_simulation(t_lem *stt, t_queue *q, t_links *lnk);
 int				create_paths(t_lem *stt);
 void			remove_connection(t_lem *stt, t_room *r1, t_room *r2);
+t_str			*join(t_str *str, t_str **lstr, char *line);
+void			print_parse(t_str *str);
 
 #endif

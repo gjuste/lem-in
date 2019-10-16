@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolve.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 14:26:58 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:25 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 15:56:36 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static void	start_travel_ants(t_lem *stt, t_room *room, t_room *prev)
 {
 	prev->ants--;
 	room->ants = stt->ants - prev->ants;
-	ft_printf("L%d-%s ", room->ants, room->name);
+	if (stt->p_ants && room->ants == stt->p_ants)
+		ft_printf("L%s%d%s-%s ", R, room->ants, RS, room->name);
+	else
+		ft_printf("L%d-%s ", room->ants, room->name);
 }
 
 static void	travel_ants(t_lem *stt, t_room *room, t_room *prev)
@@ -25,7 +28,10 @@ static void	travel_ants(t_lem *stt, t_room *room, t_room *prev)
 		room->ants++;
 	else
 		room->ants = prev->ants;
-	ft_printf("L%d-%s ", prev->ants, room->name);
+	if (stt->p_ants && prev->ants == stt->p_ants)
+		ft_printf("L%s%d%s-%s ", R, prev->ants, RS, room->name);
+	else
+		ft_printf("L%d-%s ", prev->ants, room->name);
 	prev->ants = 0;
 }
 
@@ -86,7 +92,7 @@ int			resolve(t_lem *stt)
 {
 	int		save;
 
-	ft_printf("\n");
+	// ft_printf("\n");
 	stt->start->ants = stt->ants;
 	while (stt->end->ants < stt->ants)
 	{

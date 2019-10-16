@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 14:13:50 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:37:48 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 15:39:51 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,24 @@ static void	free_room(t_room *r)
 	}
 }
 
+static void	free_str(t_str *str)
+{
+	if (str)
+	{
+		ft_strdel(&(str->line));
+		free_str(str->next);
+		free(str);
+		str = NULL;
+	}
+}
+
 void		free_all(t_lem *stt)
 {
 	stt->start = NULL;
 	stt->end = NULL;
+	stt->lstr = NULL;
 	if (stt->p_size)
 		free(stt->p_size);
+	free_str(stt->str);
 	free_room(stt->r);
-	free(stt);
-	stt = NULL;
 }

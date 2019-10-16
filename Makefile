@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
+#    By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/10/15 15:36:11 by gjuste           ###   ########.fr        #
+#    Updated: 2019/10/16 14:12:39 by jpelleti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ WHITE =		\033[1m
 NAME =	lem-in
 
 CC =		gcc
-CFLAGS =	-Wall -Werror -Wextra -g3 -fsanitize=
+CFLAGS =	-Wall -Werror -Wextra -g3
 
 HEADER =	lem_in.h
 INCLUDES =	.

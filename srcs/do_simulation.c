@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 11:46:07 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:37:43 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 10:11:04 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int		do_simulation(t_lem *stt, t_queue *q, t_links *lnk)
 {
 	if ((stt->p_nb == 0 && stt->avp == 0) ||
-		(stt->p_nb > 0 && stt->avp > 0 && (stt->avp
-		+ stt->ants + q->r->marque + 1) / (stt->p_nb + 1) <= stt->sim))
+		(stt->p_nb > 0 && stt->avp > 0 && stt->p_nb < stt->ants && (stt->avp
+		+ stt->ants + q->r->marque + 1) / (stt->p_nb + 1) < stt->sim))
 	{
 		stt->sim = (stt->avp + stt->ants + q->r->marque + 1) / (stt->p_nb + 1);
 		lnk->r->parent = q->r;

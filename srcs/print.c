@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 21:20:24 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 16:15:29 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 15:45:10 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	print_parse(t_str *str)
+{
+	while (str)
+	{
+		ft_printf("%s\n", str->line);
+		str = str->next;
+	}
+}
 
 int		get_complet_path(t_lem *stt, t_room *room)
 {
