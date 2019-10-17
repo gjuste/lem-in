@@ -70,6 +70,6 @@ int			main(int ac, char **av)
 	}
 	ft_print_stt(stt);
 	free_all(stt);
-	// while(1);
+	while(1);
 	return (0);
 }
