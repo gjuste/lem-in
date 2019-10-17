@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:08:36 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 23:50:45 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/17 11:33:29 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int			parser(t_lem *stt)
 	line = NULL;
 	while (!i && (ret = get_next_line(0, &line)) > 0)
 	{
+		if (!(join(stt, &stt->lstr, line)))
+			return (-1);
 		if (line[0] == '#')
 		{
 			if (line[1] == '#')
@@ -101,8 +103,6 @@ int			parser(t_lem *stt)
 		}
 		if (!i && line[0] != '#' && (i = room_fmt(stt, line) == -1))
 			i = get_pipe(stt, line);
-		if (!(join(stt, &stt->lstr, line)))
-			return (-1);
 	}
 	return (ret < 0 || !stt->r || i < 0 ? -1 : 0);
 }

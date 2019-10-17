@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:57:56 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 23:50:31 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/17 13:20:37 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "colors.h"
+# include "options.h"
 
 typedef struct	s_links
 {
@@ -51,7 +52,6 @@ typedef struct	s_str
 	struct s_str	*next;
 }				t_str;
 
-
 typedef struct	s_lem
 {
 	int		ants;
@@ -63,6 +63,7 @@ typedef struct	s_lem
 	int		p_nb;
 	int		l_nb;
 	int		l_need;
+	int		errstr;
 	t_str	*str;
 	t_str	*lstr;
 	t_room	**p_size;
@@ -87,6 +88,10 @@ int				do_simulation(t_lem *stt, t_queue *q, t_links *lnk);
 int				create_paths(t_lem *stt);
 void			remove_connection(t_lem *stt, t_room *r1, t_room *r2);
 char			*join(t_lem *stt, t_str **lstr, char *line);
-void			print_parse(t_str *str);
+void			print_parse(t_lem *stt);
+void			print_help(void);
+void			print_parse(t_lem *stt);
+int				get_complet_path(t_lem *stt, t_room *room);
+void			print_path(t_lem *stt);
 
 #endif

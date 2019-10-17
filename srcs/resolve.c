@@ -6,7 +6,7 @@
 /*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 14:26:58 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/10/16 15:56:36 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/17 13:28:25 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	start_travel_ants(t_lem *stt, t_room *room, t_room *prev)
 	prev->ants--;
 	room->ants = stt->ants - prev->ants;
 	if (stt->p_ants && room->ants == stt->p_ants)
-		ft_printf("L%s%d%s-%s ", R, room->ants, RS, room->name);
+		ft_printf("%sL%d%s-%s ", R, room->ants, RS, room->name);
 	else
 		ft_printf("L%d-%s ", room->ants, room->name);
 }
@@ -29,7 +29,7 @@ static void	travel_ants(t_lem *stt, t_room *room, t_room *prev)
 	else
 		room->ants = prev->ants;
 	if (stt->p_ants && prev->ants == stt->p_ants)
-		ft_printf("L%s%d%s-%s ", R, prev->ants, RS, room->name);
+		ft_printf("%sL%d%s-%s ", R, prev->ants, RS, room->name);
 	else
 		ft_printf("L%d-%s ", prev->ants, room->name);
 	prev->ants = 0;
@@ -92,7 +92,6 @@ int			resolve(t_lem *stt)
 {
 	int		save;
 
-	// ft_printf("\n");
 	stt->start->ants = stt->ants;
 	while (stt->end->ants < stt->ants)
 	{
