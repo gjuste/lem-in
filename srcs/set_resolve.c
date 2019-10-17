@@ -6,7 +6,7 @@
 /*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:22:44 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/17 13:15:24 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/17 13:41:22 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	start_end_travel(t_lem *stt, t_room *start, t_room *end)
 {
-	ft_printf("%s\n", stt->str);
 	start->ants = stt->ants;
 	while (start->ants > 0)
 	{

@@ -6,7 +6,7 @@
 #    By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/10/17 13:21:06 by jpelleti         ###   ########.fr        #
+#    Updated: 2019/10/17 14:01:11 by jpelleti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ WHITE =		\033[1m
 NAME =	lem-in
 
 CC =		gcc
-CFLAGS =	-Wall -Werror -Wextra -g3
+CFLAGS =	-Wall -Werror -Wextra
 
 HEADERS =	lem_in.h	\
 			colors.h	\

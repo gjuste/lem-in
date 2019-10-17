@@ -6,7 +6,7 @@
 /*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 19:08:22 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/17 13:29:55 by jpelleti         ###   ########.fr       */
+/*   Updated: 2019/10/17 14:00:56 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,5 @@ int			main(int ac, char **av)
 		ft_printf("ERROR\n");
 	ft_print_stt(&stt);
 	free_all(&stt);
-	while(1); // A ENLEVER POUR PAS SE FAIRE ENCULER
 	return (0);
 }
