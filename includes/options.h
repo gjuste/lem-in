@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
+/*   options.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gjuste <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 11:38:47 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/16 10:59:55 by jpelleti         ###   ########.fr       */
+/*   Created: 2019/10/17 11:54:24 by jpelleti          #+#    #+#             */
+/*   Updated: 2019/10/17 13:11:04 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef OPTIONS_H
+# define OPTIONS_H
 
-char	*ft_strjoinfree(char *s1, char *s2)
-{
-	char	*tab;
+# define HE 1 << 0
+# define LI 1 << 1
+# define PA 1 << 2
+# define PS 1 << 3
+# define PP 1 << 4
+# define PR 1 << 5
 
-	if (!(tab = ft_strjoin(s1, s2)))
-		return (NULL);
-	ft_strdel(&s1);
-	return (tab);
-}
+#endif

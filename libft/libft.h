@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 09:54:50 by jpelleti          #+#    #+#             */
-/*   Updated: 2019/06/19 19:52:26 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:43:33 by jpelleti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "ft_printf.h"
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 50
 
 typedef	struct		s_list
 {

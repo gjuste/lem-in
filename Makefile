@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+         #
+#    By: jpelleti <jpelleti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 11:55:15 by gjuste            #+#    #+#              #
-#    Updated: 2019/10/15 15:36:11 by gjuste           ###   ########.fr        #
+#    Updated: 2019/10/17 14:01:11 by jpelleti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,13 @@ WHITE =		\033[1m
 NAME =	lem-in
 
 CC =		gcc
-CFLAGS =	-Wall -Werror -Wextra -g3 -fsanitize=
+CFLAGS =	-Wall -Werror -Wextra
 
-HEADER =	lem_in.h
-INCLUDES =	.
+HEADERS =	lem_in.h	\
+			colors.h	\
+			options.h
+INCLUDES =	includes
+HEADER =	$(addprefix $(INCLUDES)/, $(HEADERS))
 
 LIBFT_SRCS =	get_next_line.c				\
 				ft_memset.c					\
@@ -133,7 +136,8 @@ SRC_FILE =	main.c				\
 			set_resolve.c		\
 			bfs.c				\
 			do_simulation.c		\
-			remove_connection.c
+			remove_connection.c	\
+			print2.c
 SRC_FILES =		$(sort $(SRC_FILE))
 SRC_DIR =		srcs
 OBJS_DIR =		objs

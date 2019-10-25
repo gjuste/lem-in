@@ -6,7 +6,7 @@
 /*   By: gjuste <gjuste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 00:25:40 by gjuste            #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:08 by gjuste           ###   ########.fr       */
+/*   Updated: 2019/10/16 23:51:10 by gjuste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,30 +100,23 @@ static int		pipe_fmt(t_lem *stt, char *line)
 	return (i < 0 ? i : 0);
 }
 
-int				get_pipe(t_lem *stt, char *line)
+int				get_pipe(t_lem *stt, char *l)
 {
+	char	*line;
 	int		ret;
 	int		i;
 
-	i = pipe_fmt(stt, line);
+	i = pipe_fmt(stt, l);
 	if (i == -1)
 		i = -2;
 	while (!i && (ret = get_next_line(0, &line)) > 0)
 	{
-		if (!line)
-			return (-1);
-		ft_printf("%s\n", line);
 		if (line[0] == '#' && line[1] == '#')
 			i = check_cmd(stt, line);
 		if (!i && line[0] != '#')
 			i = pipe_fmt(stt, line);
-		ft_strdel(&line);
+		if (!(line = join(stt, &stt->lstr, line)))
+			return (-1);
 	}
-	if (stt->start)
-		if (!stt->start->links)
-			i = -2;
-	if (stt->end)
-		if (!stt->end->links)
-			i = -2;
 	return (ret < 0 || i < 0 ? i : 0);
 }
